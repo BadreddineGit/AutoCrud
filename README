@@ -1,0 +1,11 @@
+Steps : 
+
+	1- Create your Class in 'src\com\ofppt\dao\model', the First attribute of the Class must be the 'id'.
+
+	2- Do the mapping of the Class in 'hibernate.cfg.xml'.
+
+	3- Set your entry to the Application in 'src.com.ofppt.presentation.MainCrudGui'
+
+	4- Put all your class in the 'menu' Map in the Class 'src.com.ofppt.presentation.crudgui.CrudGui'.
+	
+	5- Execute the Application.
