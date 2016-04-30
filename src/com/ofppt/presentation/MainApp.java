@@ -6,7 +6,7 @@ import com.ofppt.presentation.crudgui.CrudGui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainCrudGui extends Application {
+public class MainApp extends Application {
 
 	public static Stage window;
 

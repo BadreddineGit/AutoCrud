@@ -11,7 +11,7 @@ import com.ofppt.dao.model.Etudiant;
 import com.ofppt.dao.model.Note;
 import com.ofppt.dao.model.Professeur;
 import com.ofppt.metier.CrudServiceMetierImpl;
-import com.ofppt.presentation.MainCrudGui;
+import com.ofppt.presentation.MainApp;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,7 +29,8 @@ import javafx.scene.layout.VBox;
 
 public class CrudGui {
 
-	private TableView<Object> table;
+	static public TableView<Object> table;
+	static public Class<? extends Object> classModelVar;
 	private Scene scene;
 	private Label selectLabel, errorLabel;
 	private TextField inputId;
@@ -44,7 +45,9 @@ public class CrudGui {
 	}
 
 	public Scene getScene(Class<? extends Object> classModel) {
-
+		
+		classModelVar = classModel;
+		
 		Map<Object, Object> inputsLabels = crudServiceMetier.createInputsAndLabels(classModel);
 
 		/* MenuBar */
@@ -81,7 +84,7 @@ public class CrudGui {
 
 			Button modelButton = new Button(button.getKey());
 			modelButton.setMinWidth(150);
-			modelButton.setOnAction(e -> MainCrudGui.window.setScene(getScene(button.getValue())));
+			modelButton.setOnAction(e -> MainApp.window.setScene(getScene(button.getValue())));
 			HboxModels.getChildren().add(modelButton);
 
 		}
@@ -127,7 +130,7 @@ public class CrudGui {
 
 		findButton = new Button("Trouver");
 		findButton.setMinWidth(150);
-		findButton.setOnAction(e -> crudServiceMetier.read(inputId.getText(), classModel, inputsLabels, selectLabel));
+		findButton.setOnAction(e -> crudServiceMetier.find(inputId.getText(), classModel, inputsLabels, selectLabel));
 
 		refreshButton = new Button("Refresh");
 		refreshButton.setMinWidth(150);

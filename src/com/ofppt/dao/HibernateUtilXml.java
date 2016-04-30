@@ -1,4 +1,4 @@
-package com.ofppt.dao.sessionfactory;
+package com.ofppt.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,8 +14,6 @@ public class HibernateUtilXml {
 			sessionfactory = new Configuration().configure().buildSessionFactory();
 
 		} catch (Throwable ex) {
-
-			System.out.println("Session Factory Exception");
 			System.err.println("Failed to create sessionFactory object." + ex);
 			throw new ExceptionInInitializerError(ex);
 

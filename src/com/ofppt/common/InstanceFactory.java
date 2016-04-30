@@ -1,6 +1,6 @@
 package com.ofppt.common;
 
-import com.ofppt.dao.crud.CrudDaoImpl;
+import com.ofppt.dao.CrudDaoImpl;
 import com.ofppt.metier.ClassTrait;
 import com.ofppt.metier.CrudServiceMetierImpl;
 import com.ofppt.presentation.crudgui.GuiAdapter;

@@ -1,6 +1,13 @@
-Steps : 
 
-	1- Create your Class in 'src\com\ofppt\dao\model', the First attribute of the Class must be the 'id'.
+#AUTO CRUD#
+
+	AutoCrud is an application that manages the CRUD operations of an class and generate a javaFx Graphical 
+User Interface GUI for you, also automatically. All you have to do is create the model class* and pass it as parametre.
+AutoCrud version 1.1.0 support (Date, Collection and Entity of other class).
+
+#Steps to add a class model to the application# 
+
+	1- Create your Class in 'src\com\ofppt\dao\model', the FIRST attribute must be the 'id'.
 
 	2- Do the mapping of the Class in 'hibernate.cfg.xml'.
 
@@ -8,4 +15,6 @@ Steps :
 
 	4- Put all your class in the 'menu' Map in the Class 'src.com.ofppt.presentation.crudgui.CrudGui'.
 	
-	5- Execute the Application.
+	5- Execute the Application 'src.com.ofppt.presentation.MainApp'
+
+

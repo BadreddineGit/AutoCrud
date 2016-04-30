@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.ofppt.common.InstanceFactory;
-import com.ofppt.dao.crud.CrudDaoImpl;
+import com.ofppt.dao.CrudDaoImpl;
+import com.ofppt.presentation.crudgui.CrudGui;
 import com.ofppt.presentation.crudgui.GuiAdapter;
+
+import javafx.scene.control.TableView;
 
 public class CrudServiceMetierImpl {
 
@@ -27,24 +30,30 @@ public class CrudServiceMetierImpl {
 		return intanace;
 	}
 
-	public void create(Class<? extends Object> modelClass, Map<Object, Object> inputsLabels, Object msglabel, Object msgLabel2) {
+	public void create(Class<? extends Object> modelClass, Map<Object, Object> inputsLabels, Object msglabel,
+			Object msgLabel2) {
+
 		Object obj = classTrait.creatObject(modelClass, inputsLabels, msglabel);
 
 		if (obj != null) {
 			dao.create(obj);
-		}else{
+			refresh();
+		} else {
 			GuiAdapter.showMsg("The Object has Not been Created verifies the inputs !!", msgLabel2);
 		}
+
 	}
 
-	public Object read(String inputId, Class<? extends Object> classModel, Map<Object, Object> inputs,
+	public Object find(String inputId, Class<? extends Object> classModel, Map<Object, Object> inputs,
 			Object msglabel) {
+
 		int objectId = 0;
 		Object objectFound = null;
 
 		try {
 			objectId = Integer.parseInt(inputId);
 			selectedObjectId = objectId;
+
 		} catch (NumberFormatException e) {
 			GuiAdapter.showMsg("Input Id must be integer", msglabel);
 		}
@@ -65,6 +74,7 @@ public class CrudServiceMetierImpl {
 	}
 
 	public void select(Class<? extends Object> classModel, Object object, Map<Object, Object> inputs, Object msglabel) {
+
 		selectedObjectId = classTrait.getId(classModel, object);
 		GuiAdapter.showMsg("The id of selected Object : " + Integer.toString(selectedObjectId), msglabel);
 
@@ -81,8 +91,8 @@ public class CrudServiceMetierImpl {
 
 		if (newObject != null && selectedObjectId != 0) {
 			dao.update(selectedObjectId, newObject);
+			refresh();
 			GuiAdapter.showMsg("The object has been update successfully", msglabel);
-
 		} else if (selectedObjectId == 0) {
 			GuiAdapter.showMsg("You must SELECT first the Object !", msglabel);
 		}
@@ -94,7 +104,9 @@ public class CrudServiceMetierImpl {
 		int objectId = classTrait.getId(classModel, obj);
 		if (objectId != 0) {
 			dao.delete(objectId, classModel);
+			refresh();
 			GuiAdapter.showMsg("The object has been deleted successfully", msglabel);
+
 		} else {
 			GuiAdapter.showMsg("You must SELECT first the Object !", msglabel);
 		}
@@ -112,6 +124,13 @@ public class CrudServiceMetierImpl {
 
 	public Map<Object, Object> createInputsAndLabels(Class<? extends Object> classModel) {
 		return classTrait.createInputsAndLabels(classModel);
+	}
+
+	public void refresh() {
+
+		GuiAdapter guiAdapter = InstanceFactory.getGuiAdapter();
+		guiAdapter.refresh(CrudGui.classModelVar, CrudGui.table);
+
 	}
 
 }

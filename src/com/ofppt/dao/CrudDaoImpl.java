@@ -1,4 +1,4 @@
-package com.ofppt.dao.crud;
+package com.ofppt.dao;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ofppt.common.InstanceFactory;
-import com.ofppt.dao.sessionfactory.HibernateUtilXml;
 import com.ofppt.metier.ClassTrait;
 
 public class CrudDaoImpl {
@@ -51,7 +50,7 @@ public class CrudDaoImpl {
 
 	}
 
-	public Object read(Integer personneID, Class<? extends Object> type) {
+	public Object read(Integer objectId, Class<? extends Object> type) {
 
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -60,7 +59,7 @@ public class CrudDaoImpl {
 		try {
 
 			tx = session.beginTransaction();
-			obj = session.get(type, personneID);
+			obj = session.get(type, objectId);
 			tx.commit();
 
 		} catch (HibernateException e) {
@@ -103,7 +102,7 @@ public class CrudDaoImpl {
 
 	}
 
-	public void delete(Integer id, Class<? extends Object> type) {
+	public void delete(Integer objectId, Class<? extends Object> type) {
 
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -112,7 +111,7 @@ public class CrudDaoImpl {
 		try {
 
 			tx = session.beginTransaction();
-			obj = session.get(type, id);
+			obj = session.get(type, objectId);
 			session.delete(obj);
 
 			tx.commit();
