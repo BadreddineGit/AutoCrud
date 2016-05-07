@@ -1,6 +1,6 @@
 AUTO CRUD
 ===
-_AutoCrud is an application that manages the CRUD operations of an class and generate a GUI JavaFx **Automatically** . All you need to do is create the model class* and pass it as parametre._
+_AutoCrud is an application that manages the CRUD operations of different entities and generate a GUI JavaFx **Automatically** . All you need to do is create the modeles classes* and put it in a map._
 
 *AutoCrud version 1.1.0 support (Date, Collection and Entity of other class).
 
